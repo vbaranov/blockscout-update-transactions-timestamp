@@ -11,7 +11,7 @@ async function updateTransactionsPool(tasksBlocksRange, blocksOffset, tasksConcu
         var calls = []
         for (let i = 1; i <= tasksConcurrency; i++) {
             let start = blocksOffset + (i - 1) * tasksBlocksRange
-            let end = blocksOffset + i * tasksBlocksRange
+            let end = blocksOffset + i * tasksBlocksRange - 1
             calls.push(updateTransactionsV3(start, end))
         }
         Promise.all(calls).then(_values => {
